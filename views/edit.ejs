@@ -1,0 +1,24 @@
+<% layout('/boilerplate.ejs') %>
+    <section class="login">
+        <h1 class="section-heading-show">Edit Entry</h1>
+        <div class="form-wrapper">
+            <form class="form-login" action="/<%=entry._id%>?_method=PUT" method="POST" enctype="multipart/form-data">
+                <div>
+                    <input class="new-upload" type="file" id="image" name="image" value="<%= entry.images.url %> "
+                        multiple>
+                </div>
+                <div class="new-title-wrapper">
+                    <label class="new-title" for="title">Title</label>
+                    <input type="text" id="title" name="title" value="<%=entry.title%>">
+                </div>
+                <div class="new-description-wrapper">
+                    <label class="new-textarea-label" for="description">Description</label>
+                    <textarea type="text" id="description" name="description" cols="100" rows="20"><%=entry.description%>
+                    </textarea>
+                </div>
+                <div>
+                    <button class="buttons">Update Entry</button>
+                </div>
+            </form>
+        </div>
+    </section>

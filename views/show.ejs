@@ -1,0 +1,61 @@
+<% layout('/boilerplate.ejs') %>
+    <section>
+        <h1 class="section-heading-show">
+            <%= entry.title %>
+        </h1>
+        <div class="section-1-show">
+            <article>
+                <img class="img-index2" src="<%=entry.images[0].url%> " alt="">
+            </article>
+            <div class="entry-words">
+                <p class="section-h2">
+                    <%= entry.title %>
+                </p>
+                <p class="section-p">
+                    <%= entry.description %>
+                </p>
+            </div>
+
+            <% if(currentUser && entry.author.equals(currentUser._id)) {%>
+                <div class="show-buttons">
+                    <a href="/<%=entry._id%>/edit">
+                        <button id="edit-button" class="buttons">Edit</button>
+                    </a>
+                    <div>
+                        <form action="/<%=entry._id%>?_method=DELETE" method="POST">
+                            <button class="buttons">Delete</button>
+                        </form>
+                    </div>
+                </div>
+                <% } %>
+        </div>
+        <div class="review">
+            <% if(currentUser) { %>
+                <h2 class="leave-review">Leave a Comment</h2>
+                <form class="review" action="/<%=entry._id%>/reviews" method="POST" novalidate>
+                    <div>
+                        <textarea class="review-area" name="body" id="body" cols="100" rows="20" required></textarea>
+                    </div>
+                    <button class="buttons">Submit</button>
+                </form>
+                <% } %>
+                    <% for(let review of entry.reviews) { %>
+                        <div>
+                            <p class="review-h2">
+                                Submitted by: <%=review.author.username%>
+                            </p>
+                            <p class="review-p">
+                                <%=review.body%>
+                            </p>
+                            <%if(currentUser && review.author.equals(currentUser._id)) {%>
+                                <form class="review" action="/<%=entry._id%>/reviews/<%=review.id%>?_method=DELETE"
+                                    method="POST">
+                                    <button class="review-delete">Delete</button>
+                                </form>
+                                <% } %>
+                        </div>
+                        <% } %>
+        </div>
+    </section>
+
+    <!-- || currentUser.isAdmin -->

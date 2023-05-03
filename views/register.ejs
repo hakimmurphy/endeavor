@@ -1,0 +1,23 @@
+<% layout('/boilerplate.ejs') %>
+    <div>
+        <section class="login">
+            <h1 class="section-heading-register">Register</h1>
+            <form class="form-login" action="/register" method="POST" novalidate>
+                <div>
+                    <label class="username" for="username">Username</label>
+                    <input type="text" id="username" name="username" autofocus required>
+                </div>
+                <div>
+                    <label class="email" for="email">Email</label>
+                    <input type="email" id="email" name="email" required>
+                </div>
+                <div>
+                    <label class="password" for="password">Password</label>
+                    <input type="password" id="password" name="password" required>
+                </div>
+                <div>
+                    <button class="buttons">Register</button>
+                </div>
+            </form>
+        </section>
+    </div>
